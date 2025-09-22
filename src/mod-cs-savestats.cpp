@@ -31,11 +31,13 @@ public:
         uint32 spirit = player->GetStat(STAT_SPIRIT);
         uint32 health = player->GetMaxHealth();
         uint32 mana = player->GetMaxPower(POWER_MANA);
-        uint32 attackPower = player->GetTotalAttackPowerValue(BASE_ATTACK);
+        uint32 attackPower = player->GetTotalAttackPowerValue(BASE_ATTACK); /* 근접 전투력 */
         int32 spellPower = player->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS); /* 주문력 */
         uint32 armor = player->GetArmor();
 
-        CharacterDatabase.Execute("INSERT INTO custom_character_stats (guid, strength, agility, stamina, intellect, spirit, health, mana, attack_power, spell_power, armor) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}) ON DUPLICATE KEY UPDATE strength = VALUES(strength), agility = VALUES(agility), stamina = VALUES(stamina), intellect = VALUES(intellect), spirit = VALUES(spirit), health = VALUES(health), mana = VALUES(mana), attack_power = VALUES(attack_power), spell_power = VALUES(spell_power), armor = VALUES(armor);", guid, strength, agility, stamina, intellect, spirit, health, mana, attackPower, spellPower, armor);
+        /* 추가 예정 원거리 전투력 */
+
+      CharacterDatabase.Execute("INSERT INTO custom_character_stats (guid, strength, agility, stamina, intellect, spirit, health, mana, attack_power, spell_power, armor) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}) ON DUPLICATE KEY UPDATE strength = VALUES(strength), agility = VALUES(agility), stamina = VALUES(stamina), intellect = VALUES(intellect), spirit = VALUES(spirit), health = VALUES(health), mana = VALUES(mana), attack_power = VALUES(attack_power), spell_power = VALUES(spell_power), armor = VALUES(armor);", guid, strength, agility, stamina, intellect, spirit, health, mana, attackPower, spellPower, armor);
         // No handler to send message, so no message sent to player
     }
 };
@@ -57,3 +59,4 @@ void Addmod_cs_savestatsScripts()
     new CS_SaveStats(); // CommandScript (now without commands)
     new mod_cs_savestats_PlayerScript(); // PlayerScript for logout save
 }
+
