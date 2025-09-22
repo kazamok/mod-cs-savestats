@@ -32,10 +32,10 @@ public:
         uint32 health = player->GetMaxHealth();
         uint32 mana = player->GetMaxPower(POWER_MANA);
         uint32 attackPower = player->GetTotalAttackPowerValue(BASE_ATTACK);
-//        uint32 spellPower = player->GetSpellPowerBySchool(SPELL_SCHOOL_NORMAL);
+        int32 spellPower = player->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS); /* 주문력 */
         uint32 armor = player->GetArmor();
 
-        CharacterDatabase.Execute("INSERT INTO custom_character_stats (guid, strength, agility, stamina, intellect, spirit, health, mana, attack_power, spell_power, armor) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}) ON DUPLICATE KEY UPDATE strength = VALUES(strength), agility = VALUES(agility), stamina = VALUES(stamina), intellect = VALUES(intellect), spirit = VALUES(spirit), health = VALUES(health), mana = VALUES(mana), attack_power = VALUES(attack_power), spell_power = VALUES(spell_power), armor = VALUES(armor);", guid, strength, agility, stamina, intellect, spirit, health, mana, attackPower, 0, armor);
+        CharacterDatabase.Execute("INSERT INTO custom_character_stats (guid, strength, agility, stamina, intellect, spirit, health, mana, attack_power, spell_power, armor) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}) ON DUPLICATE KEY UPDATE strength = VALUES(strength), agility = VALUES(agility), stamina = VALUES(stamina), intellect = VALUES(intellect), spirit = VALUES(spirit), health = VALUES(health), mana = VALUES(mana), attack_power = VALUES(attack_power), spell_power = VALUES(spell_power), armor = VALUES(armor);", guid, strength, agility, stamina, intellect, spirit, health, mana, attackPower, spellPower, armor);
         // No handler to send message, so no message sent to player
     }
 };
