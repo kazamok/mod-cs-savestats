@@ -1,5 +1,6 @@
--- custom_character_stats 테이블이 없으면 생성합니다. 이 구문은 여러 번 실행해도 안전합니다.
-  CREATE TABLE IF NOT EXISTS custom_character_stats (
+DROP TABLE IF EXISTS custom_character_stats;
+
+CREATE TABLE custom_character_stats (
     guid INT(10) UNSIGNED NOT NULL COMMENT 'Character Global Unique Identifier',
     strength INT(10) UNSIGNED NOT NULL DEFAULT '0',
     agility INT(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -14,4 +15,4 @@
     ranged_attack_power INT(10) UNSIGNED NOT NULL DEFAULT '0',
     update_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (guid)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
