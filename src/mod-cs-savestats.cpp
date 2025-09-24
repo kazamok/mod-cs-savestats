@@ -32,7 +32,7 @@ public:
         uint32 health = player->GetMaxHealth();
         uint32 mana = player->GetMaxPower(POWER_MANA);
         uint32 attackPower = player->GetTotalAttackPowerValue(BASE_ATTACK); /* 근접 전투력 */
-        int32 spellPower = player->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS); /* 주문력 */
+        int32 spellPower = player->GetTotalStatValue(STAT_SPELL_POWER); /* 주문력 */
         uint32 armor = player->GetArmor();
         uint32 rangedAttackPower = player->GetTotalAttackPowerValue(RANGED_ATTACK); /* 원거리 전투력 */
 
@@ -58,4 +58,5 @@ void Addmod_cs_savestatsScripts()
     new CS_SaveStats(); // CommandScript (now without commands)
     new mod_cs_savestats_PlayerScript(); // PlayerScript for logout save
 }
+
 
